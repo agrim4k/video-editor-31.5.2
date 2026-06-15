@@ -1,0 +1,2655 @@
+<!DOCTYPE html>     
+<html lang="en">     
+<head>     
+    <meta charset="UTF-8">     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <title>WonderClone Filmora - Futuristic Edition</title>     
+    <link rel="stylesheet" href="style.css">     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">     
+</head>     
+<body>     
+    <header class="top-bar">     
+        <div class="logo">Wonder Editor <span style="color: #fff;">Filmora</span></div>     
+        <div class="actions">     
+            <button id="help-btn" title="System Manual"><i class="fas fa-question-circle"></i> HOW IT WORKS</button>     
+            <button id="import-btn"><i class="fas fa-file-import"></i> Import</button>     
+            <button id="export-btn" class="primary-btn"><i class="fas fa-rocket"></i> Launch Export</button>     
+        </div>     
+    </header>     
+     
+    <main class="main-content">     
+        <section class="left-panel glass">     
+            <div class="tabs">     
+                <button class="tab active" data-tab="media">Media</button>     
+                <button class="tab" data-tab="titles">Titles</button>     
+                <button class="tab" data-tab="audio">Audio</button>     
+                <button class="tab" data-tab="effects">Effects</button>     
+                <button class="tab" data-tab="transitions">Transitions</button>   
+            </div>     
+                 
+            <div id="media-library" class="library-container">     
+                <div class="search-box">     
+                    <i class="fas fa-search"></i>     
+                    <input type="text" id="search-media" placeholder="Search neural assets...">     
+                </div>     
+                <div class="empty-msg">Drop neural assets or Import</div>     
+                <div class="media-grid" id="media-grid"></div>     
+            </div>     
+     
+            <!-- Titles Panel (Hidden by default) -->     
+            <div id="titles-panel" class="library-container" style="display: none;">     
+                <h3>Neural Titles</h3>     
+                <div class="input-group">     
+                    <label>Overlay Text</label>     
+                    <input type="text" id="title-text" placeholder="Enter text...">     
+                </div>     
+                <div class="input-group">     
+                    <label>Font Size</label>     
+                    <input type="number" id="title-size" value="60">     
+                </div>     
+                <div class="input-group">     
+                    <label>Color</label>     
+                    <input type="color" id="title-color" value="#00f3ff">     
+                </div>     
+                <div class="input-group" style="display: flex; gap: 10px;"> 
+                    <div style="flex: 1;"> 
+                        <label>X Position</label> 
+                        <input type="number" id="title-x" value="640"> 
+                    </div> 
+                    <div style="flex: 1;"> 
+                        <label>Y Position</label> 
+                        <input type="number" id="title-y" value="360"> 
+                    </div> 
+                </div> 
+                <div class="input-group">     
+                    <label>Mode</label>     
+                    <select id="title-mode">     
+                        <option value="plain">Plain Text</option>     
+                        <option value="speech">Speech Bubble</option>     
+                        <option value="thought">Thought Bubble</option>
+                        <option value="bounce">Bounce</option>
+<option value="rotate">Rotate</option>
+<option value="glow">Glow Pulse</option>
+<option value="wave">Wave</option>
+<option value="float">Float</option>     
+                    </select>     
+                </div>     
+                <div class="input-group">
+                    <label>Animation</label>
+                    <select id="title-animation">
+                        <option value="none">None</option>
+                        <option value="fade">Fade In</option>
+                        <option value="slide">Slide Up</option>
+                        <option value="typewriter">Typewriter</option>
+                        <option value="zoom">Zoom In</option>
+                    </select>
+                </div>
+                <button id="add-title-btn" class="actions button" style="width: 100%; margin-left: 0; margin-top: 10px;">Add Title Clip</button>     
+            </div>     
+     
+            <!-- Audio Panel (Hidden by default) -->     
+            <div id="audio-panel" class="library-container" style="display: none;">     
+                <h3>Sonic Streams</h3>     
+                    
+                <div class="audio-master-control glass">    
+                    <label for="master-volume"><i class="fas fa-volume-up"></i> Master Sonic Level</label>    
+                    <input type="range" id="master-volume" min="0" max="100" value="100">    
+                </div>    
+    
+                <div class="search-box">     
+                    <i class="fas fa-search"></i>     
+                    <input type="text" id="search-audio" placeholder="Search sonic streams...">     
+                </div>     
+                <div class="genre-tabs" id="audio-genres">     
+                    <button class="genre-tab active" data-genre="all">All</button>     
+                    <button class="genre-tab" data-genre="Cyberpunk">Cyberpunk</button>     
+                    <button class="genre-tab" data-genre="Synthwave">Synthwave</button>     
+                    <button class="genre-tab" data-genre="Lofi">Lofi</button>     
+                    <button class="genre-tab" data-genre="Cinematic">Cinematic</button>     
+                </div>     
+                <button id="import-audio-btn" class="actions button sonic-import-btn" style="width: 100%; margin-left: 0; margin-top: 10px;"><i class="fas fa-music"></i> Import Custom Sonic</button>     
+                    
+                <div class="sonic-effects glass" style="margin-top: 15px; padding: 10px;">    
+                    <h4 style="margin: 0 0 10px 0; font-size: 0.8rem; color: var(--secondary);">Active Resonance</h4>    
+                    <div id="visualizer-mini" style="height: 30px; display: flex; align-items: flex-end; gap: 2px;"></div>    
+                </div>    
+    
+                <div id="audio-list" class="media-grid" style="margin-top: 15px;"></div>     
+            </div>   
+   
+            <!-- Transitions Panel (Hidden by default) -->   
+            <div id="transitions-panel" class="library-container" style="display: none;">   
+                <h3>Transitions</h3>   
+                <div class="search-box">   
+                    <i class="fas fa-search"></i>   
+                    <input type="text" id="search-transitions" placeholder="Search transitions...">   
+                </div>   
+                <div class="effects-grid" id="transitions-grid"></div>   
+                <hr style="margin: 20px 0; opacity: 0.1;">   
+                <div id="transition-controls">   
+                    <h3>Transition Settings</h3>   
+                    <div class="effect-control">   
+                        <label>SPEED</label>   
+                        <input type="range" id="trans-speed" min="0.1" max="2" step="0.1" value="0.5">   
+                    </div>   
+                    <div class="effect-control">   
+                        <label>CONTRAST</label>   
+                        <input type="range" id="trans-contrast" min="0" max="200" value="100">   
+                    </div>   
+                </div>   
+            </div>   
+        </section>     
+     
+        <section class="preview-panel">   
+            <div class="preview-main">  
+                <div class="preview-container" id="main-preview-container">     
+                    <canvas id="preview-canvas"></canvas>     
+                </div>     
+                <div class="preview-controls">     
+                    <button id="prev-frame"><i class="fas fa-chevron-left"></i></button>     
+                    <button id="play-pause"><i class="fas fa-play"></i></button>     
+                    <button id="next-frame"><i class="fas fa-chevron-right"></i></button>     
+                    <span id="timestamp">00:00:00:00 / 00:00:00:00</span>     
+                </div>     
+            </div>  
+            <aside class="preview-side-controls glass">  
+                <h3>Video Settings</h3>  
+                <div class="control-group">  
+                    <label>Aspect Ratio</label>  
+                    <select id="aspect-ratio-select">  
+                        <option value="16/9">16:9 (Widescreen)</option>  
+                        <option value="9/16">9:16 (Vertical)</option>  
+                        <option value="1/1">1:1 (Square)</option>  
+                        <option value="4/3">4:3 (Standard)</option>  
+                        <option value="21/9">21:9 (Ultrawide)</option>  
+                    </select>  
+                </div>  
+                <div class="control-group">  
+                    <label>Player Model</label>  
+                    <select id="player-model-select">   
+                        <option value="default">Standard Model</option>   
+                        <option value="cinematic">Cinematic Model</option>   
+                        <option value="minimal">Minimalist Model</option>   
+                        <option value="cyber">Cyberpunk Model</option>   
+                        <option value="retro">Retro CRT Model</option>   
+                    </select>   
+                </div>  
+                <div class="control-group">  
+                    <label>View Mode</label>  
+                    <select id="view-mode-select">  
+                        <option value="fit">Fit</option>  
+                        <option value="fill">Fill</option>  
+                        <option value="stretch">Stretch</option>  
+                    </select>  
+                </div>  
+                <div class="control-group">  
+                    <label>Theme Style</label>  
+                    <div class="style-options">  
+                        <button class="style-btn active" data-style="neon" title="Neon">  
+                            <i class="fas fa-bolt"></i>  
+                        </button>  
+                        <button class="style-btn" data-style="gold" title="Gold">  
+                            <i class="fas fa-crown"></i>  
+                        </button>  
+                        <button class="style-btn" data-style="ghost" title="Ghost">  
+                            <i class="fas fa-ghost"></i>  
+                        </button>  
+                        <button class="style-btn" data-style="matrix" title="Matrix">  
+                            <i class="fas fa-code"></i>  
+                        </button>  
+                    </div>  
+                </div>  
+                <hr style="margin: 10px 0; opacity: 0.1;">
+                <div id="clip-transform-controls" style="display: none;">
+                    <h3>Clip Transform</h3>
+                    <div class="input-group">
+                        <label>X Position</label>
+                        <input type="number" id="clip-x" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Y Position</label>
+                        <input type="number" id="clip-y" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Scale</label>
+                        <input type="number" id="clip-scale" value="1" step="0.1">
+                    </div>
+                </div>
+            </aside>  
+        </section>     
+    </main>     
+     
+    <footer class="timeline-area glass">     
+        <div class="timeline-toolbar">     
+            <div class="tool-group">     
+                <button id="split-btn" title="Split Atom"><i class="fas fa-cut"></i></button>     
+                <button id="delete-btn" title="De-materialize"><i class="fas fa-trash-alt"></i></button>     
+            </div>     
+            <div class="zoom-controls">     
+                <i class="fas fa-minus-circle" id="zoom-out-btn" style="cursor: pointer;"></i>     
+                <input type="range" id="timeline-zoom" min="0.1" max="5" step="0.1" value="1">     
+                <i class="fas fa-plus-circle" id="zoom-in-btn" style="cursor: pointer;"></i>     
+            </div>     
+        </div>     
+        <div class="timeline-scroll-container">     
+            <div class="timeline" id="timeline">     
+                <div class="timeline-ruler" id="timeline-ruler"></div>     
+                <div id="playhead"></div>     
+                <div class="track" id="video-track-1" data-type="Visuals 1"></div>     
+                <div class="track" id="video-track-2" data-type="Visuals 2"></div>     
+                <div class="track" id="audio-track" data-type="Sonics"></div>     
+            </div>     
+        </div>     
+    </footer>     
+     
+    <div id="help-modal" class="modal-overlay" style="display: none;">     
+        <div class="modal-content glass">     
+            <h2>Neural Editor Manual</h2>     
+            <div class="manual-section">     
+                <h3><i class="fas fa-plus"></i> Import</h3>     
+                <p>Use the <strong>Import</strong> button to add videos or images. Use <strong>Audio -> Import Custom</strong> for music.</p>     
+            </div>     
+            <div class="manual-section">     
+                <h3><i class="fas fa-layer-group"></i> Timeline</h3>     
+                <p>Drag clips from the library to the timeline. Drag the <strong>center</strong> of a clip to move it, or the <strong>edges</strong> to trim it.</p>     
+            </div>     
+            <div class="manual-section">     
+                <h3><i class="fas fa-magic"></i> Effects</h3>     
+                <p>Select a clip, go to the <strong>Effects</strong> tab, and click an FX card to apply neural transforms (Zoom In/Out) or filters.</p>     
+            </div>     
+            <div class="manual-section">     
+                <h3><i class="fas fa-rocket"></i> Export</h3>     
+                <p>Click <strong>Launch Export</strong> to render your composition into a WebM neural stream.</p>     
+            </div>     
+            <button id="close-help" class="primary-btn" style="width: 100%; margin-top: 20px;">Return to Bridge</button>     
+        </div>     
+    </div>     
+     
+    <script src="app.js"></script>    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap');     
+     
+:root {     
+    --bg-gradient: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #0f0f1a 100%);     
+    --glass-bg: rgba(255, 255, 255, 0.05);     
+    --glass-border: rgba(255, 255, 255, 0.1);     
+    --accent: #00f3ff;     
+    --accent-glow: rgba(0, 243, 255, 0.5);     
+    --secondary: #bc00ff;     
+    --text: #e0e0e0;     
+    --text-dim: #999;     
+    --border-radius: 12px;     
+    --timeline-height: 280px;     
+}     
+     
+* {     
+    box-sizing: border-box;     
+}     
+     
+body {     
+    margin: 0;     
+    padding: 0;     
+    font-family: 'Inter', sans-serif;     
+    background: var(--bg-gradient);     
+    color: var(--text);     
+    height: 100vh;     
+    display: flex;     
+    flex-direction: column;     
+    overflow: hidden;     
+}     
+     
+/* Glassmorphism Utility */     
+.glass {     
+    background: var(--glass-bg);     
+    backdrop-filter: blur(15px);     
+    -webkit-backdrop-filter: blur(15px);     
+    border: 1px solid var(--glass-border);     
+    border-radius: var(--border-radius);     
+}     
+     
+/* Top Bar */     
+.top-bar {     
+    height: 60px;     
+    background: rgba(0, 0, 0, 0.4);     
+    backdrop-filter: blur(10px);     
+    display: flex;     
+    justify-content: space-between;     
+    align-items: center;     
+    padding: 0 25px;     
+    border-bottom: 1px solid var(--glass-border);     
+    z-index: 100;     
+}     
+     
+.logo {     
+    font-family: 'Orbitron', sans-serif;     
+    font-weight: 700;     
+    color: var(--accent);     
+    font-size: 1.4rem;     
+    text-transform: uppercase;     
+    letter-spacing: 2px;     
+    text-shadow: 0 0 10px var(--accent-glow);     
+}     
+     
+.actions button {     
+    background: rgba(255, 255, 255, 0.1);     
+    color: white;     
+    border: 1px solid var(--glass-border);     
+    padding: 10px 20px;     
+    margin-left: 12px;     
+    border-radius: 8px;     
+    cursor: pointer;     
+    font-size: 0.9rem;     
+    transition: all 0.3s ease;     
+}     
+     
+.actions button:hover {     
+    background: rgba(255, 255, 255, 0.2);     
+    border-color: var(--accent);     
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);     
+}     
+     
+.actions button.primary-btn {     
+    background: var(--accent);     
+    color: #000;     
+    font-weight: 600;     
+    border: none;     
+}     
+     
+.actions button.primary-btn:hover {     
+    background: #00d8e4;     
+    box-shadow: 0 0 20px var(--accent-glow);     
+    transform: translateY(-1px);     
+}     
+     
+/* Main Content */     
+.main-content {     
+    flex: 1;     
+    display: flex;     
+    overflow: hidden;     
+    padding: 15px;     
+    gap: 15px;     
+}     
+     
+.left-panel {     
+    width: 380px;     
+    display: flex;     
+    flex-direction: column;     
+    overflow: hidden;     
+}     
+     
+.tabs {     
+    display: flex;     
+    background: rgba(0, 0, 0, 0.2);     
+    border-radius: 10px 10px 0 0;     
+    padding: 5px;     
+    gap: 5px;     
+}     
+     
+.tab {     
+    flex: 1;     
+    padding: 12px;     
+    background: none;     
+    border: none;     
+    color: var(--text-dim);     
+    cursor: pointer;     
+    border-radius: 8px;     
+    transition: all 0.3s;     
+    font-weight: 500;     
+    font-size: 0.85rem;     
+}     
+     
+.tab.active {     
+    color: var(--accent);     
+    background: rgba(255, 255, 255, 0.05);     
+    box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.1);     
+}     
+     
+.library-container {     
+    flex: 1;     
+    padding: 20px;     
+    overflow-y: auto;     
+    border-radius: 0 0 10px 10px;     
+    background: rgba(255, 255, 255, 0.02);     
+    max-height: calc(100vh - 200px);
+}     
+     
+.library-container::-webkit-scrollbar {     
+    width: 6px;     
+}     
+     
+.library-container::-webkit-scrollbar-thumb {     
+    background: var(--glass-border);     
+    border-radius: 10px;     
+}     
+     
+.empty-msg {     
+    color: var(--text-dim);     
+    text-align: center;     
+    margin-top: 60px;     
+    font-style: italic;     
+    opacity: 0.6;     
+}     
+     
+.media-grid {     
+    display: grid;     
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));     
+    gap: 12px;     
+}     
+     
+.media-item {     
+    aspect-ratio: 16/9;     
+    background: #000;     
+    border-radius: 8px;     
+    overflow: hidden;     
+    cursor: grab;     
+    position: relative;     
+    border: 1px solid var(--glass-border);     
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);     
+}     
+     
+.media-item:hover {     
+    border-color: var(--accent);     
+    transform: scale(1.05);     
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);     
+}     
+     
+.media-item img, .media-item video {     
+    width: 100%;     
+    height: 100%;     
+    object-fit: cover;     
+}     
+     
+/* Preview Panel */     
+.preview-panel {     
+    flex: 1;     
+    display: flex;     
+    flex-direction: row;     
+    gap: 15px;     
+    align-items: stretch;     
+}     
+  
+.preview-main {  
+    flex: 1;  
+    display: flex;  
+    flex-direction: column;  
+    justify-content: center;  
+    align-items: center;  
+}  
+     
+.preview-container {     
+    width: auto;  
+    height: auto;  
+    max-width: 100%;  
+    max-height: 100%;  
+    aspect-ratio: 16/9;     
+    background: #000;     
+    display: flex;     
+    align-items: center;     
+    justify-content: center;     
+    border-radius: 12px;     
+    overflow: hidden;     
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px rgba(0, 243, 255, 0.05);     
+    border: 1px solid var(--glass-border);     
+    transition: all 0.5s ease;   
+}     
+     
+#preview-canvas {     
+    max-width: 100%;     
+    max-height: 100%;     
+}     
+     
+.preview-controls {     
+    margin-top: 25px;     
+    display: flex;     
+    align-items: center;     
+    gap: 30px;     
+    padding: 10px 30px;     
+    background: rgba(255, 255, 255, 0.05);     
+    backdrop-filter: blur(10px);     
+    border-radius: 50px;     
+    border: 1px solid var(--glass-border);     
+}     
+     
+.preview-controls button {     
+    background: none;     
+    border: none;     
+    color: var(--text);     
+    font-size: 1.3rem;     
+    cursor: pointer;     
+    transition: all 0.2s;     
+    display: flex;     
+    align-items: center;     
+    justify-content: center;     
+}     
+     
+.preview-controls button:hover {     
+    color: var(--accent);     
+    transform: scale(1.2);     
+}     
+     
+#play-pause {     
+    font-size: 2.2rem;     
+    color: var(--accent);     
+    filter: drop-shadow(0 0 8px var(--accent-glow));     
+}     
+     
+#timestamp {     
+    font-family: 'Orbitron', monospace;     
+    font-size: 0.9rem;     
+    letter-spacing: 1px;     
+    color: var(--accent);     
+    min-width: 180px;     
+    text-align: center;     
+}     
+  
+/* Preview Side Controls */  
+.preview-side-controls {  
+    width: 250px;  
+    padding: 20px;  
+    display: flex;  
+    flex-direction: column;  
+    gap: 20px;  
+    overflow-y: auto;  
+}  
+  
+.preview-side-controls h3 {  
+    font-family: 'Orbitron', sans-serif;  
+    font-size: 0.9rem;  
+    color: var(--accent);  
+    margin: 0 0 10px 0;  
+    text-transform: uppercase;  
+    letter-spacing: 1px;  
+}  
+  
+.control-group {  
+    display: flex;  
+    flex-direction: column;  
+    gap: 8px;  
+}  
+  
+.control-group label {  
+    font-size: 0.75rem;  
+    color: var(--text-dim);  
+    text-transform: uppercase;  
+}  
+  
+.control-group select {  
+    background: rgba(0, 0, 0, 0.3);  
+    border: 1px solid var(--glass-border);  
+    padding: 8px;  
+    border-radius: 5px;  
+    color: white;  
+    font-family: inherit;  
+    outline: none;  
+}  
+  
+.control-group select:focus {  
+    border-color: var(--accent);  
+}  
+  
+.style-options {  
+    display: grid;  
+    grid-template-columns: repeat(4, 1fr);  
+    gap: 8px;  
+}  
+  
+.style-btn {  
+    background: rgba(255, 255, 255, 0.05);  
+    border: 1px solid var(--glass-border);  
+    color: white;  
+    padding: 10px;  
+    border-radius: 8px;  
+    cursor: pointer;  
+    transition: all 0.3s;  
+}  
+  
+.style-btn:hover {  
+    background: rgba(255, 255, 255, 0.1);  
+    border-color: var(--accent);  
+}  
+  
+.style-btn.active {  
+    background: var(--accent);  
+    color: #000;  
+    border-color: var(--accent);  
+    box-shadow: 0 0 10px var(--accent-glow);  
+}  
+     
+/* Timeline Area */     
+.timeline-area {     
+    height: var(--timeline-height);     
+    background: rgba(0, 0, 0, 0.3);     
+    backdrop-filter: blur(20px);     
+    border-top: 1px solid var(--glass-border);     
+    display: flex;     
+    flex-direction: column;     
+    margin: 0 15px 15px 15px;     
+    border-radius: var(--border-radius);     
+    overflow: hidden;     
+}     
+     
+.timeline-toolbar {     
+    height: 50px;     
+    border-bottom: 1px solid var(--glass-border);     
+    display: flex;     
+    justify-content: space-between;     
+    align-items: center;     
+    padding: 0 20px;     
+    background: rgba(255, 255, 255, 0.02);     
+}     
+     
+.tool-group button {     
+    background: none;     
+    border: none;     
+    color: var(--text-dim);     
+    margin-right: 20px;     
+    cursor: pointer;     
+    font-size: 1.2rem;     
+    transition: all 0.2s;     
+}     
+     
+.tool-group button:hover {     
+    color: var(--accent);     
+    filter: drop-shadow(0 0 5px var(--accent-glow));     
+}     
+     
+.genre-tabs {     
+    display: flex;     
+    gap: 5px;     
+    margin-bottom: 15px;     
+    overflow-x: auto;     
+    padding-bottom: 5px;     
+}     
+     
+.genre-tab {     
+    background: rgba(255, 255, 255, 0.05);     
+    border: 1px solid var(--glass-border);     
+    color: var(--text-dim);     
+    padding: 5px 12px;     
+    border-radius: 15px;     
+    font-size: 0.75rem;     
+    cursor: pointer;     
+    white-space: nowrap;     
+    transition: all 0.3s;     
+}     
+     
+.genre-tab.active {     
+    background: var(--accent);     
+    color: #000;     
+    border-color: var(--accent);     
+}     
+    
+/* Audio Panel Enhancements */    
+.audio-master-control {    
+    padding: 15px;    
+    margin-bottom: 20px;    
+    border: 1px solid var(--accent);    
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);    
+}    
+    
+.audio-master-control label {    
+    display: block;    
+    font-size: 0.8rem;    
+    color: var(--accent);    
+    margin-bottom: 10px;    
+    font-family: 'Orbitron', sans-serif;    
+    text-transform: uppercase;    
+    letter-spacing: 1px;    
+}    
+    
+.audio-master-control input[type="range"] {    
+    width: 100%;    
+    accent-color: var(--accent);    
+    height: 6px;    
+    background: rgba(0, 0, 0, 0.4);    
+    border-radius: 3px;    
+    appearance: none;    
+}    
+    
+.audio-master-control input[type="range"]::-webkit-slider-thumb {    
+    appearance: none;    
+    width: 18px;    
+    height: 18px;    
+    background: #fff;    
+    border: 2px solid var(--accent);    
+    border-radius: 50%;    
+    cursor: pointer;    
+    box-shadow: 0 0 10px var(--accent);    
+}    
+    
+.sonic-import-btn {    
+    background: rgba(188, 0, 255, 0.1) !important;    
+    border: 1px solid var(--secondary) !important;    
+    color: var(--secondary) !important;    
+    font-weight: 600;    
+    text-transform: uppercase;    
+    letter-spacing: 1px;    
+    box-shadow: 0 0 5px rgba(188, 0, 255, 0.2);    
+}    
+    
+.sonic-import-btn:hover {    
+    background: var(--secondary) !important;    
+    color: #000 !important;    
+    box-shadow: 0 0 20px var(--secondary) !important;    
+}    
+    
+.media-item i.fa-music {    
+    transition: all 0.3s ease;    
+}    
+    
+.media-item:hover i.fa-music {    
+    transform: scale(1.2);    
+    filter: drop-shadow(0 0 8px var(--accent));    
+}    
+    
+.visualizer-bar {    
+    flex: 1;    
+    background: var(--accent);    
+    box-shadow: 0 0 5px var(--accent);    
+    transition: height 0.1s ease;    
+}     
+     
+.clip-handle {     
+    position: absolute;     
+    top: 0;     
+    width: 10px;     
+    height: 100%;     
+    background: rgba(255, 255, 255, 0.2);     
+    cursor: ew-resize;     
+    z-index: 2;     
+}     
+     
+.clip-handle-left { left: 0; border-radius: 4px 0 0 4px; }     
+.clip-handle-right { right: 0; border-radius: 0 4px 4px 0; }     
+     
+.clip-handle:hover {     
+    background: var(--accent);     
+}     
+     
+.zoom-controls {     
+    display: flex;     
+    align-items: center;     
+    gap: 12px;     
+    color: var(--text-dim);     
+}     
+     
+#timeline-zoom {     
+    accent-color: var(--accent);     
+}     
+     
+.timeline-scroll-container {     
+    flex: 1;     
+    overflow: auto;     
+    position: relative;     
+}     
+     
+.timeline {     
+    height: 100%;     
+    min-width: 100%;     
+    background: rgba(0, 0, 0, 0.1);     
+    position: relative;     
+    padding-top: 30px;     
+}     
+     
+.timeline-ruler {     
+    height: 30px;     
+    background: rgba(255, 255, 255, 0.03);     
+    border-bottom: 1px solid var(--glass-border);     
+    position: absolute;     
+    top: 0;     
+    left: 0;     
+    width: 100%;     
+    z-index: 5;     
+}     
+     
+.track {     
+    height: 70px;     
+    background: rgba(255, 255, 255, 0.015);     
+    border-bottom: 1px solid var(--glass-border);     
+    margin-bottom: 8px;     
+    position: relative;     
+}     
+     
+.track::before {     
+    content: attr(data-type);     
+    position: sticky;     
+    left: 10px;     
+    top: 10px;     
+    font-size: 11px;     
+    color: var(--text-dim);     
+    text-transform: uppercase;     
+    font-weight: 700;     
+    letter-spacing: 1px;     
+    pointer-events: none;     
+}     
+     
+#playhead {     
+    position: absolute;     
+    top: 0;     
+    left: 0;     
+    width: 2px;     
+    height: 100%;     
+    background: var(--accent);     
+    z-index: 10;     
+    pointer-events: none;     
+    box-shadow: 0 0 10px var(--accent-glow);     
+}     
+     
+#playhead::after {     
+    content: '';     
+    position: absolute;     
+    top: -6px;     
+    left: -7px;     
+    width: 16px;     
+    height: 16px;     
+    background: var(--accent);     
+    clip-path: polygon(50% 100%, 0 0, 100% 0);     
+    box-shadow: 0 0 10px var(--accent-glow);     
+}     
+     
+.clip {     
+    position: absolute;     
+    height: 100%;     
+    background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));     
+    border: 1px solid var(--glass-border);     
+    border-radius: 6px;     
+    overflow: hidden;     
+    cursor: pointer;     
+    user-select: none;     
+    transition: box-shadow 0.2s;     
+}     
+     
+.clip:hover {     
+    border-color: rgba(255, 255, 255, 0.3);     
+}     
+     
+.clip.active {     
+    border: 2px solid var(--accent);     
+    box-shadow: inset 0 0 15px rgba(0, 243, 255, 0.2);     
+}     
+     
+.clip-title {     
+    font-size: 11px;     
+    padding: 4px 8px;     
+    white-space: nowrap;     
+    overflow: hidden;     
+    text-overflow: ellipsis;     
+    color: var(--text);     
+    font-weight: 500;     
+}     
+     
+.effect-control {     
+    margin-bottom: 20px;     
+}     
+     
+.effect-control label {     
+    display: block;     
+    font-size: 0.85rem;     
+    color: var(--text-dim);     
+    margin-bottom: 8px;     
+    font-weight: 500;     
+}     
+     
+.effect-control input[type="range"] {     
+    width: 100%;     
+    accent-color: var(--accent);     
+    background: rgba(255,255,255,0.1);     
+    height: 4px;     
+    border-radius: 2px;     
+    appearance: none;     
+}     
+     
+.effect-control input[type="range"]::-webkit-slider-thumb {     
+    appearance: none;     
+    width: 14px;     
+    height: 14px;     
+    background: var(--accent);     
+    border-radius: 50%;     
+    cursor: pointer;     
+    box-shadow: 0 0 8px var(--accent-glow);     
+}     
+     
+/* Titles/Transitions Specifics */     
+.library-container h3 {     
+    font-family: 'Orbitron', sans-serif;     
+    font-size: 1rem;     
+    margin-bottom: 20px;     
+    color: var(--accent);     
+    letter-spacing: 1px;     
+}     
+     
+.input-group {     
+    margin-bottom: 15px;     
+}     
+     
+.input-group label {     
+    display: block;     
+    font-size: 0.8rem;     
+    color: var(--text-dim);     
+    margin-bottom: 5px;     
+}     
+     
+.input-group input, .input-group select {     
+    width: 100%;     
+    background: rgba(0, 0, 0, 0.3);     
+    border: 1px solid var(--glass-border);     
+    padding: 8px;     
+    border-radius: 4px;     
+    color: white;     
+    font-family: inherit;     
+}     
+     
+.input-group input:focus {     
+    outline: none;     
+    border-color: var(--accent);     
+}     
+     
+.modal-overlay {     
+    position: fixed;     
+    top: 0;     
+    left: 0;     
+    width: 100%;     
+    height: 100%;     
+    background: rgba(0, 0, 0, 0.8);     
+    backdrop-filter: blur(5px);     
+    z-index: 1000;     
+    display: flex;     
+    justify-content: center;     
+    align-items: center;     
+}     
+     
+.modal-content {     
+    width: 90%;     
+    max-width: 500px;     
+    padding: 30px;     
+    border: 1px solid var(--accent);     
+    box-shadow: 0 0 30px var(--accent-glow);     
+}     
+     
+.modal-content h2 {     
+    font-family: 'Orbitron', sans-serif;     
+    color: var(--accent);     
+    margin-top: 0;     
+}     
+     
+.manual-section {     
+    margin-bottom: 20px;     
+}     
+     
+.manual-section h3 {     
+    font-size: 1rem;     
+    margin-bottom: 5px;     
+    color: var(--secondary);     
+}     
+     
+.manual-section p {     
+    font-size: 0.9rem;     
+    margin: 0;     
+    line-height: 1.4;     
+    color: var(--text-dim);     
+}     
+     
+.search-box {     
+    position: relative;     
+    margin-bottom: 20px;     
+}     
+     
+.search-box i {     
+    position: absolute;     
+    left: 12px;     
+    top: 50%;     
+    transform: translateY(-50%);     
+    color: var(--text-dim);     
+    font-size: 0.9rem;     
+}     
+     
+.search-box input {     
+    width: 100%;     
+    background: rgba(255, 255, 255, 0.05);     
+    border: 1px solid var(--glass-border);     
+    padding: 10px 10px 10px 35px;     
+    border-radius: 20px;     
+    color: white;     
+    font-size: 0.85rem;     
+    transition: all 0.3s;     
+}     
+     
+.search-box input:focus {     
+    outline: none;     
+    border-color: var(--accent);     
+    background: rgba(255, 255, 255, 0.1);     
+    box-shadow: 0 0 10px var(--accent-glow);     
+}     
+     
+.effects-grid {     
+    display: grid;     
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));     
+    gap: 10px;     
+}     
+     
+.effect-card {     
+    background: rgba(255, 255, 255, 0.03);     
+    border: 1px solid var(--glass-border);     
+    border-radius: 8px;     
+    padding: 10px;     
+    cursor: pointer;     
+    transition: all 0.2s;     
+}     
+     
+.effect-card:hover {     
+    border-color: var(--accent);     
+    background: rgba(255, 255, 255, 0.08);     
+}     
+     
+.effect-card.active {     
+    border-color: var(--accent);     
+    box-shadow: 0 0 10px var(--accent-glow);     
+}     
+     
+.effect-card .icon {     
+    font-size: 1.5rem;     
+    margin-bottom: 8px;     
+    color: var(--accent);     
+}     
+     
+.effect-card .name {     
+    font-size: 0.8rem;     
+    font-weight: 600;     
+}   
+   
+/* Player Models */   
+.preview-container.cinematic {   
+    border: 5px solid gold;   
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);   
+}   
+   
+.preview-container.minimal {   
+    border: 1px solid rgba(255,255,255,0.1);   
+    box-shadow: none;   
+}   
+   
+.preview-container.cyber {   
+    border: 2px solid #ff00ff;   
+    box-shadow: 0 0 20px #ff00ff, inset 0 0 20px #00ffff;   
+}   
+   
+.preview-container.retro {   
+    filter: sepia(0.5) contrast(1.2) brightness(0.8);   
+    border: 10px solid #333;   
+    border-radius: 50px;   
+}   
+  
+/* Style Themes */  
+body.style-gold {  
+    --accent: #ffd700;  
+    --accent-glow: rgba(255, 215, 0, 0.5);  
+    --secondary: #ff8c00;  
+}  
+  
+body.style-ghost {  
+    --accent: #ffffff;  
+    --accent-glow: rgba(255, 255, 255, 0.5);  
+    --secondary: #666;  
+}  
+  
+body.style-matrix {  
+    --accent: #00ff41;  
+    --accent-glow: rgba(0, 255, 65, 0.5);  
+    --secondary: #008f11;  
+}  
+
+#clip-transform-controls h3 {
+    color: var(--secondary);
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 5px;
+    margin-top: 15px;
+}
+
+/* Custom scrollbar for side panel */
+.preview-side-controls::-webkit-scrollbar {
+    width: 4px;
+}
+
+.preview-side-controls::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 10px;
+}
+
+    </style> 
+    
+     <script>
+                // app.js - WonderClone Filmora Futuristic Edition      
+
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const masterGain = audioCtx.createGain();
+const exportDest = audioCtx.createMediaStreamDestination();
+masterGain.connect(audioCtx.destination);
+masterGain.connect(exportDest);
+window.addEventListener('click', async () => {
+    if (audioCtx.state !== 'running') {
+        await audioCtx.resume();
+    }
+}, { once: true });
+
+window.addEventListener('touchstart', async () => {
+    if (audioCtx.state !== 'running') {
+        await audioCtx.resume();
+    }
+}, { once: true });
+const state = {      
+    mediaAssets: [],      
+    audioAssets: [],      
+    timelineClips: [], // Both video and audio clips      
+    currentTime: 0,      
+    duration: 0,      
+    isPlaying: false,      
+    selectedClipId: null,      
+    zoomLevel: 100,      
+    masterVolume: 100,    
+    playerModel: 'default',    
+    transitionSpeed: 0.5,    
+    transitionContrast: 100,    
+    aspectRatio: '16/9',   
+    viewMode: 'fit',   
+    themeStyle: 'neon'   
+};      
+      
+const mediaGrid = document.getElementById('media-grid');      
+const importBtn = document.getElementById('import-btn');      
+const emptyMsg = document.querySelector('.empty-msg');      
+const timeline = document.getElementById('timeline');      
+const videoTrack1 = document.getElementById('video-track-1');      
+const videoTrack2 = document.getElementById('video-track-2');      
+const audioTrack = document.getElementById('audio-track');      
+const playhead = document.getElementById('playhead');      
+const playPauseBtn = document.getElementById('play-pause');      
+const canvas = document.getElementById('preview-canvas');      
+const ctx = canvas.getContext('2d');      
+const timestampDisplay = document.getElementById('timestamp');      
+const zoomInput = document.getElementById('timeline-zoom');      
+const playerModelSelect = document.getElementById('player-model-select');    
+const previewContainer = document.getElementById('main-preview-container');    
+const aspectRatioSelect = document.getElementById('aspect-ratio-select');   
+const viewModeSelect = document.getElementById('view-mode-select');   
+const styleButtons = document.querySelectorAll('.style-btn');   
+const clipTransformControls = document.getElementById('clip-transform-controls'); 
+const clipXInput = document.getElementById('clip-x'); 
+const clipYInput = document.getElementById('clip-y'); 
+const clipScaleInput = document.getElementById('clip-scale'); 
+ 
+canvas.width = 1280;      
+canvas.height = 720;      
+  
+let isDraggingCanvas = false;  
+let draggedClip = null;  
+let dragStartX, dragStartY;  
+let clipStartX, clipStartY;  
+  
+canvas.onmousedown = (e) => {  
+    const rect = canvas.getBoundingClientRect();  
+    const scaleX = canvas.width / rect.width;  
+    const scaleY = canvas.height / rect.height;  
+    const mouseX = (e.clientX - rect.left) * scaleX;  
+    const mouseY = (e.clientY - rect.top) * scaleY;  
+  
+    const activeClips = state.timelineClips.filter(c =>   
+        (c.type === 'video' || c.type === 'image' || c.type === 'text') &&   
+        state.currentTime >= c.startTime &&   
+        state.currentTime < (c.startTime + c.duration)  
+    ).reverse();  
+  
+    for (const clip of activeClips) {  
+        let isHit = false; 
+        if (clip.type === 'text') { 
+            ctx.font = `${clip.fontSize || 60}px Orbitron`;  
+            const textWidth = ctx.measureText(clip.text).width;  
+            const fontSize = parseInt(clip.fontSize) || 60;  
+            const padding = 20;  
+      
+            const x = clip.x !== undefined ? clip.x : canvas.width/2;  
+            const y = clip.y !== undefined ? clip.y : canvas.height/2;  
+ 
+            const left = x - textWidth/2 - padding;  
+            const right = x + textWidth/2 + padding;  
+            const top = y - fontSize/2 - padding;  
+            const bottom = y + fontSize/2 + padding;  
+      
+            if (mouseX >= left && mouseX <= right && mouseY >= top && mouseY <= bottom) {  
+                isHit = true; 
+            }  
+        } else { 
+            const cw = canvas.width, ch = canvas.height; 
+            const x = clip.x || 0; 
+            const y = clip.y || 0; 
+            const scale = clip.scale || 1; 
+             
+            const left = cw/2 + x - (cw/2 * scale); 
+            const right = cw/2 + x + (cw/2 * scale); 
+            const top = ch/2 + y - (ch/2 * scale); 
+            const bottom = ch/2 + y + (ch/2 * scale); 
+ 
+            if (mouseX >= left && mouseX <= right && mouseY >= top && mouseY <= bottom) { 
+                isHit = true; 
+            } 
+        } 
+ 
+        if (isHit) { 
+            isDraggingCanvas = true;  
+            draggedClip = clip;  
+            dragStartX = mouseX;  
+            dragStartY = mouseY;  
+            clipStartX = clip.x || 0;  
+            clipStartY = clip.y || 0;  
+            selectClip(clip.id); 
+            return;  
+        } 
+    }  
+    selectClip(null); 
+};  
+  
+window.addEventListener('mousemove', (e) => {  
+    if (!isDraggingCanvas || !draggedClip) return;  
+  
+    const rect = canvas.getBoundingClientRect();  
+    const scaleX = canvas.width / rect.width;  
+    const scaleY = canvas.height / rect.height;  
+    const mouseX = (e.clientX - rect.left) * scaleX;  
+    const mouseY = (e.clientY - rect.top) * scaleY;  
+  
+    const dx = mouseX - dragStartX;  
+    const dy = mouseY - dragStartY;  
+  
+    draggedClip.x = Math.round(clipStartX + dx);  
+    draggedClip.y = Math.round(clipStartY + dy);  
+  
+    updateUIForSelectedClip(); 
+    renderPreview();  
+});  
+  
+window.addEventListener('mouseup', () => {  
+    isDraggingCanvas = false;  
+    draggedClip = null;  
+});  
+ 
+function selectClip(clipId) { 
+    state.selectedClipId = clipId; 
+    renderTimeline(); 
+    updateUIForSelectedClip(); 
+} 
+ 
+function updateUIForSelectedClip() { 
+    const clip = state.timelineClips.find(c => c.id === state.selectedClipId); 
+    if (!clip) { 
+        clipTransformControls.style.display = 'none'; 
+        return; 
+    } 
+ 
+    clipTransformControls.style.display = 'block'; 
+    clipXInput.value = clip.x || 0; 
+    clipYInput.value = clip.y || 0; 
+    clipScaleInput.value = clip.scale || 1; 
+ 
+    if (clip.type === 'text') { 
+        updateTitleInputs(clip); 
+    } 
+} 
+ 
+clipXInput.oninput = (e) => { 
+    const clip = state.timelineClips.find(c => c.id === state.selectedClipId); 
+    if (clip) { 
+        clip.x = parseInt(e.target.value); 
+        renderPreview(); 
+    } 
+}; 
+ 
+clipYInput.oninput = (e) => { 
+    const clip = state.timelineClips.find(c => c.id === state.selectedClipId); 
+    if (clip) { 
+        clip.y = parseInt(e.target.value); 
+        renderPreview(); 
+    } 
+}; 
+ 
+clipScaleInput.oninput = (e) => { 
+    const clip = state.timelineClips.find(c => c.id === state.selectedClipId); 
+    if (clip) { 
+        clip.scale = parseFloat(e.target.value); 
+        renderPreview(); 
+    } 
+}; 
+      
+// --- Tab System ---      
+const tabs = document.querySelectorAll('.tab');      
+const panels = {      
+    media: document.getElementById('media-library'),      
+    titles: document.getElementById('titles-panel'),      
+    audio: document.getElementById('audio-panel'),      
+    effects: null, // created dynamically      
+    transitions: document.getElementById('transitions-panel')    
+};      
+      
+tabs.forEach(tab => {      
+    tab.onclick = () => {      
+        tabs.forEach(t => t.classList.remove('active'));      
+        tab.classList.add('active');      
+              
+        Object.keys(panels).forEach(key => {      
+            if (panels[key]) panels[key].style.display = 'none';      
+        });      
+              
+        const target = tab.dataset.tab;      
+        if (target === 'effects') {      
+            showEffects();      
+        } else if (panels[target]) {      
+            panels[target].style.display = 'block';      
+            if (effectsPanel) effectsPanel.style.display = 'none';    
+            if (target === 'transitions') showTransitions();    
+        }      
+    };      
+});    
+    
+// --- Preview Side Controls ---    
+playerModelSelect.onchange = (e) => {    
+    const model = e.target.value;    
+    previewContainer.className = 'preview-container ' + model;    
+    state.playerModel = model;    
+};    
+   
+aspectRatioSelect.onchange = (e) => {   
+    state.aspectRatio = e.target.value;   
+    const [w, h] = state.aspectRatio.split('/').map(Number);   
+    previewContainer.style.aspectRatio = state.aspectRatio;   
+       
+    // Update canvas resolution based on aspect ratio   
+    if (w / h >= 16 / 9) {   
+        canvas.width = 1280;   
+        canvas.height = 1280 / (w / h);   
+    } else {   
+        canvas.height = 720;   
+        canvas.width = 720 * (w / h);   
+    }   
+       
+    renderPreview();   
+};   
+   
+viewModeSelect.onchange = (e) => {   
+    state.viewMode = e.target.value;   
+    renderPreview();   
+};   
+   
+styleButtons.forEach(btn => {   
+    btn.onclick = () => {   
+        styleButtons.forEach(b => b.classList.remove('active'));   
+        btn.classList.add('active');   
+        const style = btn.dataset.style;   
+        state.themeStyle = style;   
+           
+        // Remove old style classes   
+        document.body.classList.remove('style-neon', 'style-gold', 'style-ghost', 'style-matrix');   
+        // Add new one   
+        document.body.classList.add('style-' + style);   
+    };   
+});   
+      
+// --- Media Logic ---      
+function createMediaItem(file) {      
+    const isVideo = file.type.startsWith('video');      
+    const asset = {      
+        id: 'asset-' + Math.random().toString(36).substr(2, 9),      
+        name: file.name,      
+        type: isVideo ? 'video' : 'image',      
+        url: URL.createObjectURL(file),      
+        duration: isVideo ? 0 : 5,      
+        element: null      
+    };      
+      
+    const mediaItem = document.createElement('div');      
+    mediaItem.className = 'media-item';      
+    mediaItem.draggable = true;      
+    mediaItem.dataset.id = asset.id;      
+    mediaItem.style.position = 'relative'; 
+ 
+if (isVideo) { 
+ 
+    mediaItem.style.border = '2px solid #00f3ff'; 
+ 
+    mediaItem.style.boxShadow = 
+        '0 0 10px rgba(0,243,255,.8), ' + 
+        '0 0 25px rgba(0,243,255,.6), ' + 
+        '0 0 50px rgba(0,243,255,.4)'; 
+ 
+    mediaItem.style.transition = 'all .3s ease'; 
+ 
+    mediaItem.addEventListener('mouseenter', () => { 
+ 
+        mediaItem.style.transform = 'scale(1.05)'; 
+ 
+        mediaItem.style.boxShadow = 
+            '0 0 20px rgba(0,243,255,1), ' + 
+            '0 0 40px rgba(0,243,255,.8), ' + 
+            '0 0 80px rgba(0,243,255,.5)'; 
+    }); 
+ 
+    mediaItem.addEventListener('mouseleave', () => { 
+ 
+        mediaItem.style.transform = 'scale(1)'; 
+ 
+        mediaItem.style.boxShadow = 
+            '0 0 10px rgba(0,243,255,.8), ' + 
+            '0 0 25px rgba(0,243,255,.6), ' + 
+            '0 0 50px rgba(0,243,255,.4)'; 
+    }); 
+ 
+    const badge = document.createElement('div'); 
+    badge.textContent = 'VIDEO'; 
+ 
+    badge.style.position = 'absolute'; 
+    badge.style.top = '5px'; 
+    badge.style.right = '5px'; 
+    badge.style.padding = '2px 6px'; 
+    badge.style.borderRadius = '6px'; 
+    badge.style.background = '#00f3ff'; 
+    badge.style.color = '#000'; 
+    badge.style.fontSize = '10px'; 
+    badge.style.fontWeight = 'bold'; 
+ 
+    mediaItem.appendChild(badge); 
+} 
+          
+    if (isVideo) {      
+        const video = document.createElement('video');      
+        video.src = asset.url;      
+        video.muted = false;
+video.playsInline = true;
+video.preload = "auto";    
+        video.crossOrigin = "anonymous";
+        video.onloadedmetadata = () => { 
+            asset.duration = video.duration; 
+            asset.element = video;
+         const source = audioCtx.createMediaElementSource(video);
+
+source.connect(masterGain);
+source.connect(exportDest);
+        };      
+        mediaItem.appendChild(video);      
+    } else {      
+        const img = document.createElement('img');      
+        img.src = asset.url;      
+        img.crossOrigin = "anonymous";
+        img.onload = () => { asset.element = img; };      
+        mediaItem.appendChild(img);      
+    }      
+      
+    mediaItem.addEventListener('dragstart', (e) => e.dataTransfer.setData('assetId', asset.id));      
+    mediaItem.addEventListener('dblclick', () => addAssetToTimeline(asset.id));      
+      
+    mediaGrid.appendChild(mediaItem);      
+    state.mediaAssets.push(asset);      
+    emptyMsg.style.display = 'none';      
+}      
+      
+importBtn.onclick = () => {      
+    const input = document.createElement('input');      
+    input.type = 'file';      
+    input.accept = 'video/*,image/*';      
+    input.multiple = true;      
+    input.onchange = (e) => Array.from(e.target.files).forEach(createMediaItem);      
+    input.click();      
+};      
+      
+// --- Timeline & Rendering ---      
+function addAssetToTimeline(assetId, customClip = null, dropTime = null, targetTrackId = null) {      
+    const asset = state.mediaAssets.find(a => a.id === assetId);      
+    if (!asset && !customClip) return;      
+      
+    const clip = customClip || {      
+        id: 'clip-' + Math.random().toString(36).substr(2, 9),      
+        assetId: assetId,      
+        type: asset.type,      
+        track: asset.type === 'audio' ? 'audio' : 'video',      
+        trackId: targetTrackId || (asset.type === 'audio' ? 'audio' : 'video-1'),  
+        startTime: dropTime !== null ? dropTime : state.duration,      
+        duration: asset.duration || 5,      
+        offset: 0,      
+        filters: { brightness: 100, contrast: 100, grayscale: 0, sepia: 0, blur: 0 },      
+        volume: 100,      
+        x: 0, 
+        y: 0, 
+        scale: 1, 
+        text: null // For Titles      
+    };      
+      
+    state.timelineClips.push(clip);      
+    updateDuration();      
+    renderTimeline();      
+    renderPreview();      
+}      
+      
+function updateDuration() {      
+    state.duration = state.timelineClips.reduce((max, c) => Math.max(max, c.startTime + c.duration), 0);      
+    updateTimestamp();      
+}      
+      
+function renderRuler() {      
+    const ruler = document.getElementById('timeline-ruler');      
+    ruler.innerHTML = '';      
+    const duration = Math.max(state.duration + 10, 60);      
+    const step = state.zoomLevel < 50 ? 10 : (state.zoomLevel < 100 ? 5 : 1);      
+          
+    for (let i = 0; i < duration; i += step) {      
+        const mark = document.createElement('div');      
+        mark.style.position = 'absolute';      
+        mark.style.left = (i * state.zoomLevel) + 'px';      
+        mark.style.fontSize = '10px';      
+        mark.style.color = 'var(--text-dim)';      
+        mark.style.borderLeft = '1px solid rgba(255,255,255,0.2)';      
+        mark.style.height = '100%';      
+        mark.style.paddingLeft = '2px';      
+        mark.innerText = i + 's';      
+        ruler.appendChild(mark);      
+    }      
+}      
+      
+function renderTimeline() {      
+    renderRuler();      
+    videoTrack1.innerHTML = '';      
+    videoTrack2.innerHTML = '';      
+    audioTrack.innerHTML = '';      
+      
+    state.timelineClips.forEach(clip => {      
+        const asset = state.mediaAssets.find(a => a.id === clip.assetId);      
+        const clipEl = document.createElement('div');      
+        clipEl.className = 'clip';      
+        clipEl.addEventListener('mouseenter', () => { 
+ 
+    clipEl.style.boxShadow = 
+        '0 0 15px rgba(0,243,255,1), ' + 
+        '0 0 35px rgba(0,243,255,.8), ' + 
+        '0 0 60px rgba(0,243,255,.5)'; 
+}); 
+ 
+clipEl.addEventListener('mouseleave', () => { 
+ 
+    clipEl.style.boxShadow = 
+        '0 0 10px rgba(0,243,255,.8), ' + 
+        '0 0 20px rgba(0,243,255,.6), ' + 
+        '0 0 40px rgba(0,243,255,.4)'; 
+}); 
+        if (state.selectedClipId === clip.id) clipEl.classList.add('active');      
+        clipEl.style.left = (clip.startTime * state.zoomLevel) + 'px';      
+        clipEl.style.width = (clip.duration * state.zoomLevel) + 'px';      
+        clipEl.innerHTML = `      
+            <div class="clip-handle clip-handle-left"></div>      
+            <div class="clip-title">${clip.text ? 'T: ' + clip.text : (asset ? asset.name : 'Clip')}${clip.transition ? ' [TR]' : ''}</div>      
+            <div class="clip-handle clip-handle-right"></div>      
+        `;      
+      
+        clipEl.onclick = (e) => {      
+            e.stopPropagation();      
+            selectClip(clip.id); 
+            if (effectsPanel && effectsPanel.style.display === 'block') updateEffectsSliders();      
+        };      
+      
+        // Handles & Dragging      
+        clipEl.onmousedown = (e) => {      
+            if (e.button !== 0) return;      
+            e.stopPropagation();      
+                  
+            const isLeftHandle = e.target.classList.contains('clip-handle-left');      
+            const isRightHandle = e.target.classList.contains('clip-handle-right');      
+            const startX = e.clientX;      
+            const startStart = clip.startTime;      
+            const startDuration = clip.duration;      
+            const startOffset = clip.offset;      
+      
+            const move = (m) => {      
+                const diff = (m.clientX - startX) / state.zoomLevel;      
+                      
+                if (isLeftHandle) {      
+                    const newStart = Math.max(0, startStart + diff);      
+                    const actualDiff = newStart - startStart;      
+                    if (startDuration - actualDiff > 0.1) {      
+                        clip.startTime = newStart;      
+                        clip.offset = startOffset + actualDiff;      
+                        clip.duration = startDuration - actualDiff;      
+                    }      
+                } else if (isRightHandle) {      
+                    clip.duration = Math.max(0.1, startDuration + diff);      
+                } else {      
+                    clip.startTime = Math.max(0, startStart + diff);      
+                      
+                    // Track switching during drag  
+                    const rect = timeline.getBoundingClientRect();  
+                    const y = m.clientY - rect.top;  
+                    if (clip.track === 'video') {  
+                        if (y > 30 && y <= 100) clip.trackId = 'video-1';  
+                        else if (y > 100 && y <= 170) clip.trackId = 'video-2';  
+                    } else if (clip.track === 'audio') {  
+                        if (y > 170) clip.trackId = 'audio';  
+                    }  
+                }      
+                      
+                clipEl.style.left = (clip.startTime * state.zoomLevel) + 'px';      
+                clipEl.style.width = (clip.duration * state.zoomLevel) + 'px';      
+                updateDuration();      
+                renderPreview();      
+            };      
+      
+            const up = () => {      
+                document.removeEventListener('mousemove', move);      
+                document.removeEventListener('mouseup', up);      
+                renderTimeline();      
+            };      
+      
+            document.addEventListener('mousemove', move);      
+            document.addEventListener('mouseup', up);      
+        };      
+      
+        if (clip.trackId === 'audio') audioTrack.appendChild(clipEl);      
+        else if (clip.trackId === 'video-1') videoTrack1.appendChild(clipEl);  
+        else if (clip.trackId === 'video-2') videoTrack2.appendChild(clipEl);  
+        else videoTrack1.appendChild(clipEl); // Fallback  
+    });      
+      
+    timeline.style.width = Math.max(window.innerWidth, (state.duration + 10) * state.zoomLevel) + 'px';      
+}      
+ function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight) { 
+ 
+    const words = text.split(' '); 
+    const lines = []; 
+    let line = ''; 
+ 
+    for (let n = 0; n < words.length; n++) { 
+ 
+        const testLine = line + words[n] + ' '; 
+        const metrics = ctx.measureText(testLine); 
+ 
+        if (metrics.width > maxWidth && n > 0) { 
+            lines.push(line); 
+            line = words[n] + ' '; 
+        } else { 
+            line = testLine; 
+        } 
+    } 
+ 
+    lines.push(line); 
+ 
+    const startY = 
+        y - 
+        ((lines.length - 1) * lineHeight) / 2; 
+ 
+    lines.forEach((l, i) => { 
+        ctx.fillText( 
+            l, 
+            x, 
+            startY + i * lineHeight 
+        ); 
+    }); 
+}     
+function renderPreview() {      
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.clearRect(0, 0, canvas.width, canvas.height);      
+    ctx.fillStyle = '#000';      
+    ctx.fillRect(0, 0, canvas.width, canvas.height);      
+      
+    const activeClips = state.timelineClips      
+        .filter(c => c.track === 'video' && state.currentTime >= c.startTime && state.currentTime < (c.startTime + c.duration))      
+        .sort((a, b) => {  
+            const trackOrder = { 'video-1': 1, 'video-2': 2 };  
+            const orderA = trackOrder[a.trackId] || 1;  
+            const orderB = trackOrder[b.trackId] || 1;  
+            if (orderA !== orderB) return orderA - orderB;  
+            return a.startTime - b.startTime;  
+        });      
+      
+    activeClips.forEach(clip => {      
+        const asset = state.mediaAssets.find(a => a.id === clip.assetId);      
+              
+        let alpha = 1.0;      
+        const transitionDuration = parseFloat(state.transitionSpeed);      
+        if (state.currentTime < clip.startTime + transitionDuration) {      
+            alpha = (state.currentTime - clip.startTime) / transitionDuration;      
+        } else if (state.currentTime > (clip.startTime + clip.duration) - transitionDuration) {      
+            alpha = ((clip.startTime + clip.duration) - state.currentTime) / transitionDuration;      
+        }      
+        ctx.globalAlpha = Math.max(0, Math.min(1, alpha));      
+      
+        if (asset && asset.element) {      
+            let filterString = `brightness(${clip.filters.brightness}%) contrast(${clip.filters.contrast}%) grayscale(${clip.filters.grayscale}%) sepia(${clip.filters.sepia}%) blur(${clip.filters.blur}px)`;    
+            if (alpha < 1.0) filterString += ` contrast(${state.transitionContrast}%)`;    
+            ctx.filter = filterString;    
+                  
+            const drawFrame = (element) => {   
+                let dx = 0, dy = 0, dw = canvas.width, dh = canvas.height;   
+                const cw = canvas.width, ch = canvas.height;   
+                const iw = element.videoWidth || element.width;   
+                const ih = element.videoHeight || element.height;   
+                const aspect = iw / ih;   
+                const canvasAspect = cw / ch;   
+   
+                if (state.viewMode === 'fit') {   
+                    if (aspect > canvasAspect) {   
+                        dh = cw / aspect;   
+                        dy = (ch - dh) / 2;   
+                    } else {   
+                        dw = ch * aspect;   
+                        dx = (cw - dw) / 2;   
+                    }   
+                } else if (state.viewMode === 'fill') {   
+                    if (aspect > canvasAspect) {   
+                        dw = ch * aspect;   
+                        dx = (cw - dw) / 2;   
+                    } else {   
+                        dh = cw / aspect;   
+                        dy = (ch - dh) / 2;   
+                    }   
+                }   
+   
+                ctx.save();      
+                ctx.translate(cw/2 + (clip.x || 0), ch/2 + (clip.y || 0));      
+                ctx.scale(clip.scale || 1, clip.scale || 1);      
+                ctx.translate(-cw/2, -ch/2);      
+                ctx.drawImage(element, dx, dy, dw, dh);      
+                ctx.restore();      
+            };   
+   
+            if (asset.type === 'video') {      
+                const vid = asset.element;      
+                const time = (state.currentTime - clip.startTime) + clip.offset;      
+                if (Math.abs(vid.currentTime - time) > 0.1) vid.currentTime = time;      
+                drawFrame(vid);   
+            } else {      
+                drawFrame(asset.element);   
+            }      
+        }      
+      
+        if (clip.text) {      
+            ctx.filter = 'none';      
+            const fontSize = parseInt(clip.fontSize) || 60;  
+            ctx.font = `${fontSize}px Orbitron`;      
+            ctx.fillStyle = clip.color || '#00f3ff';      
+            ctx.textAlign = 'center';      
+            ctx.textBaseline = 'middle';  
+              
+            let textToDraw = clip.text; 
+            let drawAlpha = 1.0; 
+            let currentX = clip.x !== undefined ? clip.x : canvas.width/2;  
+            let currentY = clip.y !== undefined ? clip.y : canvas.height/2;  
+            let currentScale = clip.scale || 1.0; 
+ 
+            const elapsed = state.currentTime - clip.startTime; 
+            const animType = clip.animation || 'none'; 
+            if(animType === 'bounce'){ 
+    currentY += Math.sin(elapsed * 8) * 20; 
+} 
+ 
+if(animType === 'rotate'){ 
+    ctx.rotate(Math.sin(elapsed * 2) * 0.15); 
+} 
+ 
+if(animType === 'glow'){ 
+    ctx.shadowBlur = 
+        20 + 
+        Math.sin(elapsed * 5) * 15; 
+} 
+ 
+if(animType === 'wave'){ 
+    currentY += Math.sin(elapsed * 6) * 10; 
+    currentX += Math.cos(elapsed * 6) * 10; 
+} 
+ 
+if(animType === 'float'){ 
+    currentY -= elapsed * 15; 
+} 
+ 
+            if (animType === 'fade') { 
+                drawAlpha = Math.min(1, elapsed / 1); 
+            } else if (animType === 'slide') { 
+                const offset = Math.max(0, 1 - elapsed) * 100; 
+                currentY += offset; 
+            } else if (animType === 'typewriter') { 
+                const chars = Math.floor(elapsed * 35); 
+                textToDraw = clip.text.substring(0, chars); 
+            } else if (animType === 'zoom') { 
+                currentScale *= Math.min(1, elapsed / 1); 
+            } 
+ 
+            ctx.save(); 
+            ctx.globalAlpha = drawAlpha * ctx.globalAlpha; 
+            ctx.translate(currentX, currentY); 
+            ctx.scale(currentScale, currentScale); 
+            ctx.translate(-currentX, -currentY); 
+ 
+            const textWidth = ctx.measureText(textToDraw).width;  
+            const padding = 20;  
+  
+            if (clip.mode === 'speech' || clip.mode === 'thought') {  
+                ctx.strokeStyle = clip.color || '#00f3ff';  
+                ctx.lineWidth = 5;  
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';  
+  
+                if (clip.mode === 'speech') {  
+                    const bx = currentX - textWidth/2 - padding;  
+                    const by = currentY - fontSize/2 - padding;  
+                    const bw = textWidth + padding*2;  
+                    const bh = fontSize + padding*2;  
+                    drawRoundedRect(ctx, bx, by, bw, bh, 15);  
+                    ctx.fill();  
+                    ctx.stroke();  
+                    ctx.beginPath();  
+                    ctx.moveTo(currentX - 20, by + bh);  
+                    ctx.lineTo(currentX, by + bh + 30);  
+                    ctx.lineTo(currentX + 20, by + bh);  
+                    ctx.fill();  
+                    ctx.stroke();  
+                } else if (clip.mode === 'thought') {  
+                    drawCloud(ctx, currentX, currentY, textWidth + padding*2, fontSize + padding*2);  
+                }  
+            }  
+  
+            ctx.shadowBlur = 15;      
+            ctx.shadowColor = clip.color || '#00f3ff';      
+            drawWrappedText( 
+    ctx, 
+    textToDraw, 
+    currentX, 
+    currentY, 
+    canvas.width * 0.8, 
+    fontSize * 1.3 
+);     
+            ctx.restore(); 
+        }      
+    });      
+      
+    ctx.globalAlpha = 1.0;      
+    ctx.filter = 'none';      
+}  
+  
+function drawRoundedRect(ctx, x, y, width, height, radius) {  
+    ctx.beginPath();  
+    ctx.moveTo(x + radius, y);  
+    ctx.lineTo(x + width - radius, y);  
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);  
+    ctx.lineTo(x + width, y + height - radius);  
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);  
+    ctx.lineTo(x + radius, y + height);  
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);  
+    ctx.lineTo(x, y + radius);  
+    ctx.quadraticCurveTo(x, y, x + radius, y);  
+    ctx.closePath();  
+}  
+  
+function drawCloud(ctx, x, y, width, height) {  
+    const r = height / 1.5;  
+    ctx.beginPath();  
+    ctx.arc(x - width/3, y, r, 0, Math.PI * 2);  
+    ctx.fill();  
+    ctx.stroke();  
+    ctx.beginPath();  
+    ctx.arc(x + width/3, y, r, 0, Math.PI * 2);  
+    ctx.fill();  
+    ctx.stroke();  
+    ctx.beginPath();  
+    ctx.arc(x, y - height/3, r, 0, Math.PI * 2);  
+    ctx.fill();  
+    ctx.stroke();  
+    ctx.beginPath();  
+    ctx.arc(x, y + height/3, r, 0, Math.PI * 2);  
+    ctx.fill();  
+    ctx.stroke();  
+    ctx.fillRect(x - width/3, y - height/3, (width/3)*2, (height/3)*2);  
+    ctx.beginPath();  
+    ctx.arc(x - width/2, y + height/2 + 20, 10, 0, Math.PI * 2);  
+    ctx.fill();  
+    ctx.stroke();  
+    ctx.beginPath();  
+    ctx.arc(x - width/2 - 25, y + height/2 + 45, 6, 0, Math.PI * 2);  
+    ctx.fill();  
+    ctx.stroke();  
+}  
+      
+// --- Audio Sync ---      
+function syncAudio() {      
+    const activeAudioClips = state.timelineClips.filter(c => c.track === 'audio' && state.currentTime >= c.startTime && state.currentTime < (c.startTime + c.duration));      
+          
+    state.timelineClips.filter(c => c.track === 'audio').forEach(clip => {      
+        const asset = state.mediaAssets.find(a => a.id === clip.assetId);      
+        if (asset && asset.element) {      
+            const audio = asset.element;      
+            if (activeAudioClips.includes(clip) && state.isPlaying) {      
+                const time = (state.currentTime - clip.startTime) + clip.offset;      
+                if (Math.abs(audio.currentTime - time) > 0.1) audio.currentTime = time;      
+                audio.volume = ((clip.volume || 100) / 100) * (state.masterVolume / 100);      
+                if (audio.paused) {
+
+    audio.play().catch(() => {});
+
+}    
+            } else {      
+                audio.pause();      
+            }      
+        }      
+    });      
+    updateVisualizer();     
+}      
+     
+function initVisualizer() {     
+    const container = document.getElementById('visualizer-mini');     
+    if(!container) return; 
+    container.innerHTML = '';     
+    for (let i = 0; i < 20; i++) {     
+        const bar = document.createElement('div');     
+        bar.className = 'visualizer-bar';     
+        bar.style.height = '2px';     
+        container.appendChild(bar);     
+    }     
+}     
+     
+function updateVisualizer() {     
+    const bars = document.querySelectorAll('.visualizer-bar');     
+    const isActive = state.isPlaying && state.timelineClips.some(c => c.track === 'audio' && state.currentTime >= c.startTime && state.currentTime < (c.startTime + c.duration));     
+         
+    bars.forEach(bar => {     
+        if (isActive) {     
+            const height = Math.random() * 100;     
+            bar.style.height = height + '%';     
+        } else {     
+            bar.style.height = '2px';     
+        }     
+    });     
+}     
+      
+// --- Titles Module ---      
+document.getElementById('add-title-btn').onclick = () => {      
+    const text = document.getElementById('title-text').value || "NEW TITLE";     
+    // Longer text = longer duration 
+const autoDuration = Math.max( 
+    3, 
+    Math.ceil(text.length / 8) 
+);  
+    const size = document.getElementById('title-size').value;      
+    const color = document.getElementById('title-color').value;      
+    const mode = document.getElementById('title-mode').value;  
+    const x = parseInt(document.getElementById('title-x').value) || 640;  
+    const y = parseInt(document.getElementById('title-y').value) || 360;  
+    const anim = document.getElementById('title-animation').value; 
+      
+    const clip = {      
+        id: 'clip-' + Math.random().toString(36).substr(2, 9),      
+        assetId: null,      
+        type: 'text',      
+        track: 'video',      
+        trackId: 'video-2',  
+        startTime: state.currentTime,      
+        duration: autoDuration, 
+        offset: 0,      
+        filters: { brightness: 100, contrast: 100, grayscale: 0, sepia: 0, blur: 0 },      
+        volume: 100,      
+        text: text,      
+        fontSize: size,      
+        color: color,  
+        mode: mode,  
+        animation: anim, 
+        x: x,  
+        y: y, 
+        scale: 1 
+    };      
+    state.timelineClips.push(clip);      
+    updateDuration();      
+    renderTimeline();      
+    renderPreview();      
+    selectClip(clip.id); 
+};      
+      
+// --- Playback Loop ---      
+let lastTime = 0;      
+function playback(timestamp) {      
+    if (!state.isPlaying) {      
+        lastTime = 0;      
+        syncAudio();      
+        return;      
+    }      
+          
+    if (!lastTime) lastTime = timestamp;      
+    const delta = (timestamp - lastTime) / 1000;      
+    lastTime = timestamp;      
+      
+    state.currentTime += delta;      
+    if (state.currentTime >= state.duration) {       
+        state.currentTime = state.duration;       
+        pause();       
+    }      
+    updateTimestamp();      
+    renderPreview();      
+    syncAudio();      
+    requestAnimationFrame(playback);      
+}      
+      
+async function play() {
+
+    if (audioCtx.state !== 'running') {
+        await audioCtx.resume();
+    }
+
+    state.mediaAssets.forEach(asset => {
+
+        if (
+            asset.element &&
+            (
+                asset.type === 'video' ||
+                asset.type === 'audio'
+            )
+        ) {
+
+            try {
+                asset.element.muted = false;
+            } catch(e){}
+        }
+    });
+
+    state.isPlaying = true;
+
+    playPauseBtn.innerHTML =
+        '<i class="fas fa-pause"></i>';
+
+    requestAnimationFrame(playback);
+}
+function pause() { state.isPlaying = false; playPauseBtn.innerHTML = '<i class="fas fa-play"></i>'; syncAudio(); }      
+      
+playPauseBtn.onclick = () => {
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+    state.isPlaying ? pause() : play();
+};
+      
+document.getElementById('prev-frame').onclick = () => {      
+    pause();      
+    state.currentTime = Math.max(0, state.currentTime - (1/30));      
+    updateTimestamp();      
+    renderPreview();      
+};      
+      
+document.getElementById('next-frame').onclick = () => {      
+    pause();      
+    state.currentTime = state.currentTime + (1/30);      
+    updateTimestamp();      
+    renderPreview();      
+};      
+      
+function updateTimestamp() {      
+    const pad = (n) => Math.floor(n).toString().padStart(2, '0');      
+    const f = (s) => `${pad(s/3600)}:${pad((s%3600)/60)}:${pad(s%60)}:${pad((s%1)*60)}`;      
+    timestampDisplay.innerText = `${f(state.currentTime)} / ${f(state.duration)}`;      
+    playhead.style.left = (state.currentTime * state.zoomLevel) + 'px';      
+}      
+      
+// --- Seek & Scrubbing ---      
+function seekToX(x) {      
+    state.currentTime = Math.max(0, x / state.zoomLevel);      
+    updateTimestamp();      
+    renderPreview();      
+    syncAudio();      
+}      
+      
+timeline.ondragover = (e) => {      
+    e.preventDefault();      
+};      
+      
+timeline.ondrop = (e) => {      
+    e.preventDefault();      
+    const assetId = e.dataTransfer.getData('assetId');      
+    if (!assetId) return;      
+      
+    const rect = timeline.getBoundingClientRect();      
+    const x = e.clientX - rect.left + timeline.parentElement.scrollLeft;      
+    const dropTime = Math.max(0, x / state.zoomLevel);      
+      
+    const y = e.clientY - rect.top;  
+    let targetTrackId = 'video-1';  
+    if (y > 30 && y <= 100) targetTrackId = 'video-1';  
+    else if (y > 100 && y <= 170) targetTrackId = 'video-2';  
+    else if (y > 170) targetTrackId = 'audio';  
+          
+    addAssetToTimeline(assetId, null, dropTime, targetTrackId);      
+};      
+      
+timeline.onmousedown = (e) => {      
+    if (e.target.classList.contains('clip') || e.target.classList.contains('clip-handle')) return;      
+    const rect = timeline.getBoundingClientRect();      
+          
+    const scrub = (moveEvent) => {      
+        const x = moveEvent.clientX - rect.left + timeline.parentElement.scrollLeft;      
+        seekToX(x);      
+    };      
+      
+    const stopScrub = () => {      
+        document.removeEventListener('mousemove', scrub);      
+        document.removeEventListener('mouseup', stopScrub);      
+    };      
+      
+    const x = e.clientX - rect.left + timeline.parentElement.scrollLeft;      
+    seekToX(x);      
+          
+    document.addEventListener('mousemove', scrub);      
+    document.addEventListener('mouseup', stopScrub);      
+};      
+      
+// --- Effects Panel ---      
+let effectsPanel = null;      
+const effectsLibrary = [      
+    { id: 'vintage', name: 'Vintage Neural', icon: 'fa-history', type: 'filter', filters: { sepia: 80, contrast: 120 } },      
+    { id: 'cyber', name: 'Cyber Neon', icon: 'fa-bolt', type: 'filter', filters: { brightness: 150, contrast: 150, blur: 2 } },      
+    { id: 'noir', name: 'Noir Protocol', icon: 'fa-moon', type: 'filter', filters: { grayscale: 100, contrast: 140 } }      
+];      
+      
+for(let i=1; i<=100; i++) {      
+    effectsLibrary.push({      
+        id: `fx-${i}`,      
+        name: `Neural Filter ${i}`,      
+        icon: 'fa-magic',      
+        type: 'filter',      
+        filters: { brightness: 100 + (Math.random()*40-20), contrast: 100 + (Math.random()*40-20) }      
+    });      
+}      
+      
+function showEffects() {      
+    if (!effectsPanel) {      
+        effectsPanel = document.createElement('div');      
+        effectsPanel.className = 'library-container glass';      
+        effectsPanel.innerHTML = `      
+            <h3>Neural FX</h3>      
+            <div class="search-box">      
+                <i class="fas fa-search"></i>      
+                <input type="text" id="search-effects" placeholder="Search neural FX...">      
+            </div>      
+            <div class="effects-grid" id="effects-grid"></div>      
+            <hr style="margin: 20px 0; opacity: 0.1;">      
+            <div id="effect-controls">      
+                <h3>Manual Overrides</h3>      
+                ${['brightness', 'contrast', 'grayscale', 'sepia', 'blur'].map(eff => `      
+                    <div class="effect-control">      
+                        <label>${eff.toUpperCase()}</label>      
+                        <input type="range" id="eff-${eff}" min="0" max="${eff === 'blur' ? 50 : 200}" value="100">      
+                    </div>      
+                `).join('')}      
+            <div class="effect-control">      
+                <label>VOLUME</label>      
+                <input type="range" id="eff-volume" min="0" max="100" value="100">      
+            </div>      
+            </div>      
+        `;      
+        document.querySelector('.left-panel').appendChild(effectsPanel);      
+              
+        ['brightness', 'contrast', 'grayscale', 'sepia', 'blur'].forEach(eff => {      
+            document.getElementById(`eff-${eff}`).oninput = (e) => {      
+                const clip = state.timelineClips.find(c => c.id === state.selectedClipId);      
+                if (clip) { clip.filters[eff] = e.target.value; renderPreview(); }      
+            };      
+        });  
+  
+        document.getElementById('title-text').oninput = (e) => {  
+            const clip = state.timelineClips.find(c => c.id === state.selectedClipId);  
+            if (clip && clip.type === 'text') { clip.text = e.target.value; renderPreview(); renderTimeline(); }  
+        };  
+        document.getElementById('title-size').oninput = (e) => {  
+            const clip = state.timelineClips.find(c => c.id === state.selectedClipId);  
+            if (clip && clip.type === 'text') { clip.fontSize = e.target.value; renderPreview(); }  
+        };  
+        document.getElementById('title-color').oninput = (e) => {  
+            const clip = state.timelineClips.find(c => c.id === state.selectedClipId);  
+            if (clip && clip.type === 'text') { clip.color = e.target.value; renderPreview(); }  
+        };  
+        document.getElementById('title-x').oninput = (e) => {  
+            const clip = state.timelineClips.find(c => c.id === state.selectedClipId);  
+            if (clip && clip.type === 'text') { clip.x = parseInt(e.target.value) || 0; renderPreview(); }  
+        };  
+        document.getElementById('title-y').oninput = (e) => {  
+            const clip = state.timelineClips.find(c => c.id === state.selectedClipId);  
+            if (clip && clip.type === 'text') { clip.y = parseInt(e.target.value) || 0; renderPreview(); }  
+        };  
+        document.getElementById('title-mode').onchange = (e) => {  
+            const clip = state.timelineClips.find(c => c.id === state.selectedClipId);  
+            if (clip && clip.type === 'text') { clip.mode = e.target.value; renderPreview(); }  
+        };  
+        document.getElementById('title-animation').onchange = (e) => {  
+            const clip = state.timelineClips.find(c => c.id === state.selectedClipId);  
+            if (clip && clip.type === 'text') { clip.animation = e.target.value; renderPreview(); }  
+        };  
+        document.getElementById('eff-volume').oninput = (e) => {      
+            const clip = state.timelineClips.find(c => c.id === state.selectedClipId);      
+            if (clip) { clip.volume = e.target.value; syncAudio(); }      
+        };      
+      
+        document.getElementById('search-effects').oninput = (e) => {      
+            renderEffectsList(e.target.value);      
+        };      
+    }      
+    effectsPanel.style.display = 'block';      
+    renderEffectsList();      
+    updateEffectsSliders();      
+}      
+      
+function renderEffectsList(query = '') {      
+    const grid = document.getElementById('effects-grid');      
+    if(!grid) return; 
+    grid.innerHTML = '';      
+    const filtered = effectsLibrary.filter(fx => fx.name.toLowerCase().includes(query.toLowerCase()));      
+          
+    filtered.forEach(fx => {      
+        const card = document.createElement('div');      
+        card.className = 'effect-card';      
+        card.innerHTML = `      
+            <div class="icon"><i class="fas ${fx.icon}"></i></div>      
+            <div class="name">${fx.name}</div>      
+        `;      
+        card.onclick = () => {      
+            const clip = state.timelineClips.find(c => c.id === state.selectedClipId);      
+            if (!clip) return;      
+                  
+            if (fx.type === 'filter') {      
+                Object.assign(clip.filters, fx.filters);      
+                updateEffectsSliders();      
+            }      
+            renderPreview();      
+        };      
+        grid.appendChild(card);      
+    });      
+}      
+      
+function updateEffectsSliders() {      
+    const clip = state.timelineClips.find(c => c.id === state.selectedClipId);      
+    if (clip && effectsPanel) {      
+        ['brightness', 'contrast', 'grayscale', 'sepia', 'blur'].forEach(eff => {      
+            const el = document.getElementById(`eff-${eff}`); 
+            if(el) el.value = clip.filters[eff];      
+        });      
+        const volEl = document.getElementById('eff-volume'); 
+        if(volEl) volEl.value = clip.volume || 100;      
+    }      
+}  
+  
+function updateTitleInputs(clip) {  
+    if (!clip || clip.type !== 'text') return;  
+    document.getElementById('title-text').value = clip.text || '';  
+    document.getElementById('title-size').value = clip.fontSize || 60;  
+    document.getElementById('title-color').value = clip.color || '#00f3ff';  
+    document.getElementById('title-x').value = clip.x || 0;  
+    document.getElementById('title-y').value = clip.y || 0;  
+    document.getElementById('title-mode').value = clip.mode || 'plain';  
+    document.getElementById('title-animation').value = clip.animation || 'none'; 
+}  
+    
+// --- Transitions Module ---    
+const transitionsLibrary = [  
+    { id: 'trans-1', name: 'Neural Fade', icon: 'fa-adjust' },  
+    { id: 'trans-2', name: 'Quantum Leap', icon: 'fa-bolt' },  
+    { id: 'trans-3', name: 'Plasma Dissolve', icon: 'fa-tint' },  
+    { id: 'trans-4', name: 'Static Glitch', icon: 'fa-microchip' },  
+    { id: 'trans-5', name: 'Binary Shift', icon: 'fa-code' },  
+    { id: 'trans-6', name: 'Warp Drive', icon: 'fa-space-shuttle' },  
+    { id: 'trans-7', name: 'Neon Blur', icon: 'fa-eye' },  
+    { id: 'trans-8', name: 'Cyber Wipe', icon: 'fa-columns' }  
+];  
+  
+for(let i=9; i<=100; i++) {    
+    transitionsLibrary.push({    
+        id: `trans-${i}`,    
+        name: `Neural Transition ${i}`,    
+        icon: 'fa-random'    
+    });    
+}    
+    
+function showTransitions() {    
+    renderTransitionsList();    
+}    
+    
+function renderTransitionsList(query = '') {    
+    const grid = document.getElementById('transitions-grid');    
+    if(!grid) return; 
+    grid.innerHTML = '';    
+    const filtered = transitionsLibrary.filter(t => t.name.toLowerCase().includes(query.toLowerCase()));    
+    
+    filtered.forEach(t => {    
+        const card = document.createElement('div');    
+        card.className = 'effect-card';    
+        card.innerHTML = `    
+            <div class="icon"><i class="fas ${t.icon}"></i></div>    
+            <div class="name">${t.name}</div>    
+        `;    
+        card.onclick = () => {    
+            const clip = state.timelineClips.find(c => c.id === state.selectedClipId);    
+            if (clip && clip.track === 'video') {    
+                clip.transition = t.id;    
+                renderTimeline();    
+            }    
+        };    
+        grid.appendChild(card);    
+    });    
+}    
+    
+document.getElementById('search-transitions').oninput = (e) => {    
+    renderTransitionsList(e.target.value);    
+};    
+    
+document.getElementById('trans-speed').oninput = (e) => {    
+    state.transitionSpeed = e.target.value;    
+    renderPreview();    
+};    
+    
+document.getElementById('trans-contrast').oninput = (e) => {    
+    state.transitionContrast = e.target.value;    
+    renderPreview();    
+};    
+      
+// --- Search Bars ---      
+document.getElementById('search-media').oninput = (e) => {      
+    const query = e.target.value.toLowerCase();      
+    const items = mediaGrid.querySelectorAll('.media-item');      
+    items.forEach(item => {      
+        const id = item.dataset.id;      
+        const asset = state.mediaAssets.find(a => a.id === id);      
+        if(asset) item.style.display = asset.name.toLowerCase().includes(query) ? 'block' : 'none';      
+    });      
+};      
+      
+document.getElementById('search-audio').oninput = (e) => {      
+    const query = e.target.value.toLowerCase();      
+    const list = document.getElementById('audio-list');      
+    const items = list.querySelectorAll('.media-item');      
+    items.forEach(item => {      
+        const name = item.querySelector('div').innerText.toLowerCase();      
+        item.style.display = name.includes(query) ? 'block' : 'none';      
+    });      
+};      
+      
+// --- Mock 100+ Audio Tracks with Genres ---      
+const genres = ["Cyberpunk", "Synthwave", "Lofi", "Cinematic"];      
+const audioStreams = [      
+    { name: "Glitch Matrix", genre: "Cyberpunk", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },      
+    { name: "Neural Override", genre: "Cyberpunk", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },      
+    { name: "Neon Drifter", genre: "Synthwave", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },      
+    { name: "Plasma Sunset", genre: "Synthwave", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },      
+    { name: "Static Chill", genre: "Lofi", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" },      
+    { name: "Bonsai Logic", genre: "Lofi", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" },      
+    { name: "Aeon Rises", genre: "Cinematic", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" },      
+    { name: "VOID Symphony", genre: "Cinematic", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" }      
+];      
+      
+for(let i=1; i<=100; i++) {      
+    audioStreams.push({       
+        name: `Neural Track ${i}`,       
+        genre: genres[Math.floor(Math.random() * genres.length)]      
+    });      
+}      
+      
+let currentAudioGenre = 'all';  
+function renderAudio(query = '', genre = 'all') {  
+    const list = document.getElementById('audio-list');  
+    if (!list) return;  
+    list.innerHTML = '';      
+    state.mediaAssets.filter(a => a.type === 'audio').forEach(asset => {      
+        const matchesQuery = asset.name.toLowerCase().includes(query.toLowerCase());      
+        const matchesGenre = genre === 'all' || asset.genre === genre;      
+              
+        if (matchesQuery && matchesGenre) {      
+            const div = document.createElement('div');      
+            div.className = 'media-item';      
+            div.innerHTML = `<i class="fas fa-music" style="font-size: 2rem; color: var(--accent);"></i><div style="font-size: 10px; padding: 5px;">${asset.name}</div><div style="font-size: 8px; color: var(--text-dim);">${asset.genre}</div>`;      
+                
+            div.onclick = () => {    
+                state.mediaAssets.forEach(a => { if (a.type === 'audio' && a.element) a.element.pause(); });    
+                if (asset.element) { asset.element.currentTime = 0; asset.element.play(); }    
+            };    
+  
+            div.ondblclick = (e) => {    
+                e.stopPropagation();    
+                if (asset.element) asset.element.pause();    
+                addAssetToTimeline(asset.id);    
+            };    
+            list.appendChild(div);      
+        }      
+    });      
+}  
+  
+function initAudioLibrary() {      
+    const genreTabs = document.querySelectorAll('.genre-tab');      
+    audioStreams.forEach(stream => {      
+        const asset = {      
+            id: 'mock-audio-' + Math.random().toString(36).substr(2, 9),      
+            name: stream.name,      
+            genre: stream.genre,      
+            type: 'audio',      
+            url: stream.url || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",      
+            duration: 120,      
+            element: new Audio()      
+        };      
+        asset.element.src = asset.url;     
+        asset.element.crossOrigin = "anonymous";
+        asset.element.onloadedmetadata = () => {
+            asset.duration = asset.element.duration;
+            const source = audioCtx.createMediaElementSource(asset.element);
+
+source.connect(masterGain);
+source.connect(exportDest);
+        };     
+        state.mediaAssets.push(asset);      
+    });      
+    genreTabs.forEach(tab => {      
+        tab.onclick = () => {      
+            genreTabs.forEach(t => t.classList.remove('active'));      
+            tab.classList.add('active');      
+            currentAudioGenre = tab.dataset.genre;      
+            renderAudio(document.getElementById('search-audio').value, currentAudioGenre);      
+        };      
+    });      
+    document.getElementById('search-audio').oninput = (e) => { renderAudio(e.target.value, currentAudioGenre); };      
+    renderAudio();      
+}      
+initAudioLibrary();      
+initVisualizer();     
+     
+document.getElementById('master-volume').oninput = (e) => {     
+    masterGain.gain.value =
+    state.masterVolume / 100;
+    state.masterVolume = e.target.value;     
+    syncAudio();     
+};     
+      
+document.getElementById('import-audio-btn').onclick = () => {      
+    const input = document.createElement('input');      
+    input.type = 'file';      
+    input.accept = 'audio/*';      
+    input.onchange = (e) => {      
+        const file = e.target.files[0];      
+        const asset = {      
+            id: 'asset-' + Math.random().toString(36).substr(2, 9),      
+            name: file.name,      
+            type: 'audio',      
+            url: URL.createObjectURL(file),      
+            duration: 0,      
+            element: new Audio()      
+        };      
+        asset.element.src = asset.url;      
+        asset.element.crossOrigin = "anonymous";
+        asset.element.onloadedmetadata = () => {      
+            asset.duration = asset.element.duration;      
+            const source = audioCtx.createMediaElementSource(asset.element);
+            source.connect(masterGain);
+            state.mediaAssets.push(asset);      
+            renderAudio();    
+        };      
+    };      
+    input.click();      
+};      
+      
+// --- Tool Buttons ---      
+document.getElementById('split-btn').onclick = () => {      
+    let clip = state.timelineClips.find(c => c.id === state.selectedClipId && state.currentTime > c.startTime && state.currentTime < (c.startTime + c.duration));  
+    if (!clip) clip = state.timelineClips.find(c => state.currentTime > c.startTime && state.currentTime < (c.startTime + c.duration));      
+    if (clip) {      
+        const splitPoint = state.currentTime - clip.startTime;      
+        const newClip = { ...JSON.parse(JSON.stringify(clip)), id: 'clip-' + Math.random().toString(36).substr(2, 9), startTime: state.currentTime, duration: clip.duration - splitPoint, offset: (clip.offset || 0) + splitPoint };      
+        clip.duration = splitPoint;      
+        state.timelineClips.push(newClip);      
+        renderTimeline();      
+    }      
+};      
+      
+document.getElementById('delete-btn').onclick = () => {      
+    if (state.selectedClipId) {      
+        state.timelineClips = state.timelineClips.filter(c => c.id !== state.selectedClipId);      
+        selectClip(null); 
+        updateDuration(); renderTimeline(); renderPreview(); syncAudio();      
+    }      
+};      
+      
+zoomInput.oninput = () => { state.zoomLevel = zoomInput.value * 100; renderTimeline(); updateTimestamp(); };      
+document.getElementById('zoom-in-btn').onclick = () => { zoomInput.value = parseFloat(zoomInput.value) + 0.1; zoomInput.oninput(); };      
+document.getElementById('zoom-out-btn').onclick = () => { zoomInput.value = parseFloat(zoomInput.value) - 0.1; zoomInput.oninput(); };      
+      
+// --- Help Modal ---      
+const helpBtn = document.getElementById('help-btn');      
+const helpModal = document.getElementById('help-modal');      
+const closeHelp = document.getElementById('close-help');      
+helpBtn.onclick = () => helpModal.style.display = 'flex';      
+closeHelp.onclick = () => helpModal.style.display = 'none';      
+window.onclick = (e) => { if (e.target === helpModal) helpModal.style.display = 'none'; };      
+      function syncMediaForExport() {
+
+    state.timelineClips.forEach(clip => {
+
+        const asset =
+            state.mediaAssets.find(
+                a => a.id === clip.assetId
+            );
+
+        if (
+            asset &&
+            asset.element &&
+            (
+                asset.type === 'video' ||
+                asset.type === 'audio'
+            )
+        ) {
+
+            const exportTime =
+                Math.max(
+                    0,
+                    state.currentTime -
+                    clip.startTime +
+                    clip.offset
+                );
+
+            try {
+
+                asset.element.currentTime =
+                    exportTime;
+
+            } catch (err) {}
+
+        }
+
+    });
+
+}
+// --- Export ---      
+document.getElementById('export-btn').onclick = () => {      
+    const exportBtn = document.getElementById('export-btn');
+    const originalTime = state.currentTime;      
+    const originalIsPlaying = state.isPlaying;
+
+    if (state.isPlaying) pause();
+    
+    state.currentTime = 0;
+    updateTimestamp();
+    renderPreview();
+    syncAudio();
+
+    exportBtn.disabled = true;
+    exportBtn.innerText = 'Exporting: 0%';
+
+    const canvasStream = canvas.captureStream(30);      
+    const audioStream = exportDest.stream;
+    
+   const mixedStream =
+    new MediaStream();
+
+canvasStream
+    .getVideoTracks()
+    .forEach(track => {
+
+        mixedStream.addTrack(track);
+
+    });
+
+audioStream
+    .getAudioTracks()
+    .forEach(track => {
+
+        mixedStream.addTrack(track);
+
+    });
+
+    const options = {
+        mimeType: 'video/webm;codecs=vp8,opus',
+        videoBitsPerSecond: 12000000,
+audioBitsPerSecond: 192000
+    };
+
+    let recorder;
+    try {
+        recorder = new MediaRecorder(mixedStream, options);
+    } catch (e) {
+        console.warn("VP9 not supported, falling back to default webm", e);
+        recorder = new MediaRecorder(mixedStream, { mimeType: 'video/webm' });
+    }
+    const chunks = [];      
+    recorder.ondataavailable = e => chunks.push(e.data);      
+    recorder.onstop = () => {      
+        const blob = new Blob(chunks, { type: 'video/webm' });      
+        const url = URL.createObjectURL(blob);      
+        const a = document.createElement('a'); a.href = url; a.download = 'futuristic-filmora-export.webm'; a.click();      
+        
+        state.currentTime = originalTime; 
+        if (originalIsPlaying) play();
+        else { renderPreview(); syncAudio(); }
+        
+        exportBtn.disabled = false;
+        exportBtn.innerText = 'EXPORT';
+    };      
+    recorder.start();      
+    
+    // Controlled export loop to prevent "rushing" and ensure UI updates
+    const exportFrame = () => {      
+        if (
+    state.currentTime >=
+    state.duration + 0.25
+) {      
+        
+        syncMediaForExport();
+
+renderPreview();
+
+syncAudio();
+
+updateTimestamp();
+        
+        const progress = state.duration > 0 ? Math.floor((state.currentTime / state.duration) * 100) : 100;
+        exportBtn.innerText = `Exporting: ${progress}%`;
+        
+        state.currentTime += 1/30; 
+        
+        // Use setTimeout to allow the browser to process UI updates and avoid rushing
+        setTimeout(exportFrame, 1000 / 30);      
+    };      
+    exportFrame();      
+};      
+      
+console.log("WonderClone Futuristic Loaded");  
+requestAnimationFrame(playback); 
+};
+    </script>
+</body>     
+</html>
